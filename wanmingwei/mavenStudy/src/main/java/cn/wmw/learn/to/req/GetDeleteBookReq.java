@@ -1,4 +1,4 @@
-package cn.wmw.learn.vo;
+package cn.wmw.learn.to.req;
 
 import lombok.Data;
 

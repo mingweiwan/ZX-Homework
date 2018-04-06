@@ -9,29 +9,29 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDO {
+public class UserDO {
     /**
-     * 
+     * 用户ＩＤ
      */
-    private Integer number;
+    private Integer userId;
 
     /**
-     * 
+     * 密码
      */
-    private String name;
+    private String userPw;
 
     /**
-     * 
+     * 用户名
      */
-    private String author;
+    private String userName;
 
     /**
-     * 
+     * 用户电话
      */
-    private String catalogue;
+    private String userTel;
 
     /**
-     * 
+     * 是否管理员
      */
-    private String intro;
+    private Integer isAdmin;
 }

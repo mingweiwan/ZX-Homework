@@ -9,29 +9,24 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDO {
+public class RepertoryDO {
     /**
-     * 
+     * 仓库ＩＤ
+     */
+    private Integer repId;
+
+    /**
+     * 书籍编号
      */
     private Integer number;
 
     /**
-     * 
+     * 所有数量
      */
-    private String name;
+    private Integer allAmount;
 
     /**
-     * 
+     * 现在数量
      */
-    private String author;
-
-    /**
-     * 
-     */
-    private String catalogue;
-
-    /**
-     * 
-     */
-    private String intro;
+    private Integer nowAmount;
 }

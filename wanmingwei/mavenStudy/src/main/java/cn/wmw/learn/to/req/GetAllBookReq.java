@@ -1,4 +1,4 @@
-package cn.wmw.learn.vo;
+package cn.wmw.learn.to.req;
 
 import cn.wmw.learn.domain.BookDO;
 import lombok.Data;

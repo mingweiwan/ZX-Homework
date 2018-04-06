@@ -64,5 +64,14 @@
         <table schema="" tableName="book" domainObjectName="BookDO">
             <generatedKey column="number" sqlStatement="MYSQL" identity="true"/>
         </table>
+        <table tableName="borrow" schema="" domainObjectName="BorrowDO">
+            <generatedKey column="bor_id" sqlStatement="MYSQL" identity="true"/>
+        </table>
+        <table tableName="repertory" schema="" domainObjectName="RepertoryDO">
+            <generatedKey column="rep_id" sqlStatement="MYSQL" identity="true"/>
+        </table>
+        <table tableName="user" schema="" domainObjectName="UserDO">
+            <generatedKey column="user_id" sqlStatement="MYSQL" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

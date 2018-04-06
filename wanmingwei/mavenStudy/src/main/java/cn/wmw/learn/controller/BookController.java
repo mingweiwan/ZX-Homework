@@ -2,7 +2,9 @@ package cn.wmw.learn.controller;
 
 import cn.wmw.learn.domain.BookDO;
 import cn.wmw.learn.service.BookService;
-import cn.wmw.learn.vo.*;
+import cn.wmw.learn.service.impl.BookServiceImpl;
+import cn.wmw.learn.to.req.*;
+import cn.wmw.learn.to.resp.BooleanResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +48,7 @@ public class BookController {
 //    按书籍编号删除
     @RequestMapping(value = "/delete/book",method = RequestMethod.POST)
     public void delectBooks(@RequestBody GetDeleteBookReq req) {
-        bookService.delectBooks(req.getNumber());
+        bookService.deleteBooks(req.getNumber());
     }
 //    按书籍名称删除
     @RequestMapping(value = "/delete/book/name",method = RequestMethod.POST)
@@ -57,5 +59,14 @@ public class BookController {
     @RequestMapping(value = "/update/book",method = RequestMethod.POST)
     public void updateBooks(@RequestBody GetUpdateBookReq req) {
         bookService.updateBooks(req);
+    }
+//    登录
+    @RequestMapping(value = "/user/login", method = RequestMethod.POST)
+    public BooleanResp userLogin(@RequestBody UserRegisterReq req) {
+        return bookService.userLogin(req);
+    }
+    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
+    public BooleanResp userRegister(@RequestBody UserRegisterReq req) {
+        return bookService.userRegister(req);
     }
 }
