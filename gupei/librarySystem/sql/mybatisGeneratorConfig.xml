@@ -47,8 +47,13 @@
         </javaTypeResolver>
 
         <!--&lt;!&ndash; targetProject:生成PO类的位置 &ndash;&gt;-->
-        <!--java模型生成，生成对数据库表进行操作的条件的class模型(即BookCondintion)，如查询条件，删除条件等
-        其实条件就是bookmapper操作数据表的方法的参数-->
+        <!--java模型生成，首先生成和数据库表对应的类，即BookDo类。还生成对数据库表进行操作的条件的class模型(即BookCondintion类)，
+        condintion类生成在这个domain包下的condintion包中，这个类表示查询条件，删除条件等
+        其实condintion就是bookmapper接口中操作数据表的方法的参数-->
+
+        <!--我们是利用bookMapper对象对数据库进行操作，将我们的BookDo对象放入数据表中，表中的字段和对象的属性一一对应
+        所以我们插入的或者取出来的都是BookDO对象，而有时候我们是查询某个BookDO对象，这时候我们就需要condition对象作为参数传入方法，
+        此对象中包含我们需要的查询信息-->
         <javaModelGenerator targetPackage="cn.cooper.uestc.domain"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
@@ -61,7 +66,7 @@
            若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
            targetProject="ecps-manager-mapper"，下同-->
 
-        <!--sqlMapGenerator表示去哪个地方生成放SQL语句的文件(具有方法实体)，运行代码的时候动态生成具有这些方法(方法搬过去)的类
+        <!--sqlMapGenerator表示去哪个地方生成放SQL语句的文件(具有方法实体)，运行代码的时候动态生成具有这些方法(把方法搬到新类)的类
         通过BookMapper接口的引用来调用方法然后操作数据库。此处为resources下生成的BookMapper.xml文件-->
         <sqlMapGenerator targetPackage="mapper"
                          targetProject="src/main/resources">
@@ -76,10 +81,28 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-        <!-- 建立数据库表，建立表以后在domainObjectName输入一个类的名字，mybatisGeneator会按照我们设置的表的属性自动生成一个
-        类。如对应book表以后自动生成一个名为BookDo的类，这个类的属性和booK表的属性一样，表面BOOKDO对象是放入book表中的，BookDO
-        类自动生成-->
+        <!-- 建立数据库表，建立表以后在domainObjectName输入一个类的名字，mybatisGeneator会按照我们设置的表的字段自动生成一个
+        类。如写上book表以后自动生成一个名为BookDo的类，这个类的属性和booK表的属性一样，表明BOOKDO对象是放入book表中的，BookDO
+        类自动生成，同时也会在相同的包下，生成condintion包继而是condintion类-->
+        <!--注意:要生成新的类，需要先运行Mybatis Genator Run 他不是Tomcat Run,即右上方先调整一下-->
         <table schema="" tableName="book" domainObjectName="BookDo">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
+
+        </table>
+
+        <table schema="" tableName="borrowing_table" domainObjectName="BorrowingTableDo">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
+
+        </table>
+        <table schema="" tableName="password_table" domainObjectName="PasswordTableDo">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
+
+        </table>
+        <table schema="" tableName="students_information" domainObjectName="StudentsInformationDo">
+            <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
+
+        </table>
+        <table schema="" tableName="Repository_table" domainObjectName="RepositoryTableDo">
             <generatedKey column="id" sqlStatement="MYSQL" identity="true"/>
 
         </table>

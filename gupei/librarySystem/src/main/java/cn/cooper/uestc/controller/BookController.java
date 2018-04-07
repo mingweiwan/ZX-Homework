@@ -3,10 +3,9 @@ package cn.cooper.uestc.controller;
 
 import cn.cooper.uestc.domain.BookDo;
 import cn.cooper.uestc.domain.condition.BookCondition;
-import cn.cooper.uestc.service.BookService;
-import cn.cooper.uestc.vo.GetAllBookReq;
+import cn.cooper.uestc.service.serviceImplementClass.BookService;
+import cn.cooper.uestc.To.RequestFromClient.GetAllBookReq;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -92,10 +91,12 @@ public class BookController {
        return bookService.selectBook(id);
     }
     //value值和method方法都一样的话，tomcat服务器程序会报错
+
     @RequestMapping(value = "/selectBook/",method = RequestMethod.GET)
     public List<BookDo> selectBook(@RequestParam String name) {//通过name来选中一本书
         return bookService.selectBook(name);
     }
+    //不知道
 }
 
 
